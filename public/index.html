@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+  canvas{border: 1px solid #333; position: absolute; left: 8px;}  
+</style>
+<body>
+    <canvas id="canvas" width="500" height="326"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'green';
+            ctx.save();
+            ctx.fillRect(50,50,100,100);
+
+            ctx.fillStyle = 'orange';
+            ctx.save();
+            ctx.fillRect(50,200,100,100);
+
+            ctx.restore();
+            ctx.fillRect(250,50,100,100);
+
+            ctx.restore();
+            ctx.fillRect(250,200,100,100);
+        } else {
+            alert('浏览器版本太低')
+        }
+    </script>
+</body>
+</html>
