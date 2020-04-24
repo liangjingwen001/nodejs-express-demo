@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+  .box{width: 120px; height: 120px; background-color: orange} 
+  .left{position: absolute;}
+  .right{position: absolute; right: 0}
+</style>
+<body>
+    <div id="div1" class="box left"></div>
+    <div id="div2" class="box right"></div>
+    <script>   
+    class Drag{
+        constructor(id) {
+            this.oDiv = document.querySelector(id);
+            this.disx = 0;
+            this.disy = 0;
+            this.init();
+        }
+        init() {
+            this.oDiv.onmousedown = function(ev) {
+                this.disx = ev.clientX - this.oDiv.offsetLeft;
+                this.disy = ev.clientY - this.oDiv.offsetTop;
+
+                document.onmousemove = this.fnMove.bind(this)
+                document.onmouseup = this.fnUp.bind(this)
+                return false
+            }.bind(this);
+        }
+        fnMove(ev) {
+            this.oDiv.style.left = ev.clientX - this.disx + 'px'
+            this.oDiv.style.top = ev.clientY - this.disy + 'px'
+        }
+        fnUp(ev) {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+
+    class LimitDrag extends Drag{
+        fnMove(ev) {
+            super.fnMove(ev)
+            // 限制范围
+            if(this.oDiv.offsetLeft <= 0) {
+                this.oDiv.style.left = 0; 
+            } else if(this.oDiv.offsetTop <= 0) {
+                this.oDiv.style.top = 0;
+            } else if(this.oDiv.offsetTop + 120 >= document.documentElement.clientHeight) {
+                this.oDiv.style.top = document.documentElement.clientHeight - 120 + 'px';
+            } else if(this.oDiv.offsetLeft + 120 >= document.documentElement.clientWidth) {
+                this.oDiv.style.left = document.documentElement.clientWidth - 120 + 'px';
+            }
+        }
+    }
+    new Drag('#div1')
+    new LimitDrag('#div2')
+
+    </script>
+</body>
+</html>

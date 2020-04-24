@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const db = require('./db/connect.js')
 const jwt = require('./utils/jwt.js')
 
-// 引入路
+// 引入路由
 const userRouter = require('./router/userRouter.js')
 const loginRouter = require('./router/login.js')
 

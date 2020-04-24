@@ -1,34 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<style>
-  canvas{border: 1px solid #333; position: absolute; left: 8px;}  
-</style>
-<body>
-    <canvas id="canvas" width="500" height="326"></canvas>
-    <script>
-        var canvas = document.getElementById('canvas')
-        if (canvas.getContext) {
-            var ctx = canvas.getContext('2d');
-            ctx.fillStyle = 'green';
-            ctx.save();
-            ctx.fillRect(50,50,100,100);
-
-            ctx.fillStyle = 'orange';
-            ctx.save();
-            ctx.fillRect(50,200,100,100);
-
-            ctx.restore();
-            ctx.fillRect(250,50,100,100);
-
-            ctx.restore();
-            ctx.fillRect(250,200,100,100);
-        } else {
-            alert('浏览器版本太低')
-        }
-    </script>
-</body>
-</html>
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>one</title><link href=/static/css/app.3e92657cebfbf4c609ff58122dbee944.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.3afee15ffd72761f33e7.js></script><script type=text/javascript src=/static/js/vendor.7edf8e33ffa393ae5e74.js></script><script type=text/javascript src=/static/js/app.cf005f33c34811400c63.js></script></body></html><script>(function gethtmlfontsize(){
+    // 三个步骤:
+    // 1.获取html的宽,
+    let htmlwidth=document.documentElement.clientWidth || document.body.clientWidth;//有些浏览器documentElement获取不到,那就使用后面的body
+    // 2.htmlDom
+    let htmlDom=document.getElementsByTagName("html")[0]
+    //3.设置根元素样式
+    htmlDom.style.fontSize=htmlwidth/20+'px';
+    // 添加监听事件(resize是监听的意思)
+    window.addEventListener('resize',gethtmlfontsize)
+})()</script>
